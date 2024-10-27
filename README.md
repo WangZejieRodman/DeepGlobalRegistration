@@ -47,10 +47,17 @@ Our network is built on the [MinkowskiEngine](https://github.com/StanfordVL/Mink
 You can install the MinkowskiEngine and the python requirements on your system with:
 
 ```shell
-# Install MinkowskiEngine
+# 创建虚拟环境
+conda create -n py3-DGR python=3.8 -y
+conda activate py3-DGR
+pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html -i https://pypi.tuna.tsinghua.edu.cn/simple
 sudo apt install libopenblas-dev g++-7
-pip install torch
-export CXX=g++-7; pip install -U MinkowskiEngine --install-option="--blas=openblas" -v
+export CXX=g++-7
+
+# Install MinkowskiEngine
+git clone https://github.com/NVIDIA/MinkowskiEngine.git
+cd MinkowskiEngine
+python setup.py install --blas=openblas
 
 # Download and setup DeepGlobalRegistration
 git clone https://github.com/chrischoy/DeepGlobalRegistration.git
